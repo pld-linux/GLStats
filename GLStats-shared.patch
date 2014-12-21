@@ -1,0 +1,11 @@
+--- GLStats-0.3.1/GLStats/CMakeLists.txt.orig	2014-12-21 09:02:36.729952851 +0100
++++ GLStats-0.3.1/GLStats/CMakeLists.txt	2014-12-21 09:02:41.406619323 +0100
+@@ -5,7 +5,7 @@
+ 
+ list(APPEND GLSTATS_LINK_LIBRARIES ${Boost_PROGRAM_OPTIONS_LIBRARY})
+ 
+-set(GLSTATS_LIBRARY_TYPE STATIC)
++set(GLSTATS_LINK_LIBRARIES GL)
+ common_library(GLStats)
+ 
+ # Grouping files in VisualStudio

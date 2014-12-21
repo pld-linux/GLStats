@@ -1,0 +1,14 @@
+--- GLStats-0.3.1/CMakeLists.txt.orig	2014-10-07 11:54:53.000000000 +0200
++++ GLStats-0.3.1/CMakeLists.txt	2014-12-20 21:44:32.998326854 +0100
+@@ -19,11 +19,6 @@
+ 
+ include(Common)
+ 
+-include(Buildyard)
+-if(BUILDYARD_STOP)
+-  return()
+-endif()
+-
+ set(FIND_PACKAGES_DEFINES GLSTATS_STATIC)
+ include(FindPackages)
+ set(GLSTATS_DEPENDENT_LIBRARIES Lunchbox)
