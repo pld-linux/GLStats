@@ -1,0 +1,57 @@
+--- GLStats-0.3.2/GLStats/data.cpp.orig	2015-07-07 12:40:32.000000000 +0200
++++ GLStats-0.3.2/GLStats/data.cpp	2024-04-21 18:16:45.032225044 +0200
+@@ -23,14 +23,15 @@
+ #include "type.h"
+ 
+ #include <lunchbox/debug.h>
+-#include <lunchbox/stdExt.h>
++#include <servus/uint128_t.h>
+ #include <limits>
++#include <unordered_map>
+ 
+ namespace GLStats
+ {
+-typedef stde::hash_map< uint32_t, Entity > EntityMap;
++typedef std::unordered_map< uint32_t, Entity > EntityMap;
+ typedef EntityMap::const_iterator EntityMapCIter;
+-typedef stde::hash_map< uint32_t, Thread > ThreadMap;
++typedef std::unordered_map< uint32_t, Thread > ThreadMap;
+ typedef ThreadMap::const_iterator ThreadMapCIter;
+ typedef Items::const_iterator ItemsCIter;
+ typedef Items::iterator ItemsIter;
+--- GLStats-0.3.2/GLStats/renderer.cpp.orig	2015-07-07 12:40:32.000000000 +0200
++++ GLStats-0.3.2/GLStats/renderer.cpp	2024-04-21 18:16:31.875629652 +0200
+@@ -25,10 +25,12 @@
+ 
+ #include <lunchbox/debug.h>
+ #include <lunchbox/os.h>
+-#include <lunchbox/stdExt.h>
++#include <servus/uint128_t.h>
+ 
++#include <algorithm>
+ #include <map>
+ #include <set>
++#include <unordered_map>
+ #ifdef __APPLE__
+ #  include <OpenGL/gl.h>
+ #else
+@@ -48,7 +50,7 @@ typedef std::set< uint32_t > ThreadSet;
+ typedef ThreadSet::const_iterator ThreadSetCIter;
+ typedef std::map< uint32_t, ThreadSet > EntityMap;
+ typedef EntityMap::const_iterator EntityMapCIter;
+-typedef stde::hash_map< uint32_t, float > EntityPos;
++typedef std::unordered_map< uint32_t, float > EntityPos;
+ 
+ typedef Items::const_iterator ItemsCIter;
+ 
+@@ -122,8 +124,8 @@ public:
+         const Item* last = &items.front();
+         typedef std::pair< uint32_t, uint64_t > FrameTime;
+         typedef std::vector< FrameTime > FrameTimes;
+-        typedef stde::hash_map< uint64_t, FrameTimes > FrameTimesMap;
+-        typedef stde::hash_map< uint32_t, uint64_t > FrameEndMap;
++        typedef std::unordered_map< uint64_t, FrameTimes > FrameTimesMap;
++        typedef std::unordered_map< uint32_t, uint64_t > FrameEndMap;
+         typedef FrameTimes::const_iterator FrameTimesCIter;
+         typedef FrameTimesMap::const_iterator FrameTimesMapCIter;
+         typedef FrameEndMap::const_iterator FrameEndMapCIter;

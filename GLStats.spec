@@ -5,19 +5,21 @@
 Summary:	Generic OpenGL overlay statistics renderer
 Summary(pl.UTF-8):	Ogólna biblioteka do renderowania statystyk na nakładce OpenGL
 Name:		GLStats
-Version:	0.3.1
+Version:	0.3.2
 Release:	1
 License:	LGPL v2.1
 Group:		Libraries
+#Source0Download: https://github.com/Eyescale/GLStats/tags
 Source0:	https://github.com/Eyescale/GLStats/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	ed80f815bdfdb714aa6269d35c6bfcc1
+# Source0-md5:	4af2acee59974144ae2cad2930af14aa
 Patch0:		%{name}-cmake.patch
 Patch1:		%{name}-shared.patch
+Patch2:		%{name}-update.patch
 URL:		https://github.com/Eyescale/GLStats/
-BuildRequires:	Eyescale-CMake
+BuildRequires:	Eyescale-CMake >= 2018.2
 BuildRequires:	Lunchbox-devel >= 1.10
+BuildRequires:	Servus-devel
 BuildRequires:	OpenGL-devel
-BuildRequires:	boost-devel >= 1.41.0
 BuildRequires:	cmake >= 2.8
 %{?with_apidocs:BuildRequires:	doxygen}
 BuildRequires:	libstdc++-devel
@@ -60,6 +62,7 @@ Dokumentacja API biblioteki GLStats.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 ln -s %{_datadir}/Eyescale-CMake CMake/common
 %{__rm} .gitexternals
@@ -97,7 +100,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libGLStats.so
 %{_includedir}/GLStats
-%{_pkgconfigdir}/GLStats.pc
 %dir %{_datadir}/GLStats
 %{_datadir}/GLStats/CMake
 
